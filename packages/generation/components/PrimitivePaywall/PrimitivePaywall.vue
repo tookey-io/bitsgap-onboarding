@@ -40,6 +40,7 @@ const props = withDefaults(
   PrimitivePaywallDefaultProps
 );
 
+const telegram = useTelegramSdk();
 const { mainButtonText, popup, selectedProduct, active } = toRefs(props);
 
 const formState = inject(FORM_STATE_TOKEN, null);
@@ -86,8 +87,8 @@ const loading = ref(false);
 
 const onSubmit = async () => {
   loading.value = true;
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-  window.location.href = "https://t.me/tookey_e_bot"
+  await new Promise((resolve) => setTimeout(resolve, 2500));
+  telegram.openTelegramLink(import.meta.env.VITE_BOT_LINK);
   // popupOpened.value = true;
 };
 
